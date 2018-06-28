@@ -17,13 +17,13 @@ public class AccountComponent {
     private static final String ACCOUNT_PROVIDER_HOST = "http://127.0.0.1:8080/";
     @Autowired
     private RestTemplate restTemplate;
-    
+
     public Optional<AccountModel> fetchAccount(@NonNull String email) {
         String url = ACCOUNT_PROVIDER_HOST + "account/getAccount?email={0}";
         FetchAccount result = this.restTemplate.getForEntity(url, FetchAccount.class, email).getBody();
         return Optional.ofNullable(result.getData());
     }
-    
+
     public boolean saveAccount(String email, String password, String registerIp) {
         String url = ACCOUNT_PROVIDER_HOST + "account/saveAccount";
         MultiValueMap<String, String> requestEntity = new LinkedMultiValueMap<>();
@@ -32,8 +32,11 @@ public class AccountComponent {
         requestEntity.add("registerIp", registerIp);
         return this.restTemplate.postForEntity(url, requestEntity, SaveAccount.class).getBody().getData() > 0;
     }
-    
-    //偷懒，定义一下
-    private static class FetchAccount extends AccountResult<AccountModel>{}
-    private static class SaveAccount extends AccountResult<Long>{}
+
+    // 偷懒，定义一下
+    private static class FetchAccount extends AccountResult<AccountModel> {
+    }
+
+    private static class SaveAccount extends AccountResult<Long> {
+    }
 }

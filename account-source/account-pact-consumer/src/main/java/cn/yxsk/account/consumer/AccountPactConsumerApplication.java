@@ -8,11 +8,11 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 public class AccountPactConsumerApplication {
     @Bean
-    public RestTemplate restTemplate(){
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-    
-	public static void main(String[] args) {
-		SpringApplication.run(AccountPactConsumerApplication.class, args);
-	}
+
+    public static void main(String[] args) {
+        SpringApplication.run(AccountPactConsumerApplication.class, args);
+    }
 }

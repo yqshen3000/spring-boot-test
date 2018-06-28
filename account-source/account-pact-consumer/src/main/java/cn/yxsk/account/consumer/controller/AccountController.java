@@ -56,20 +56,20 @@ public class AccountController {
             result.setMessage("邮箱信息不能为空");
             return result;
         }
-        
+
         if (!StringUtils.hasText(password)) {
             result.setCode(2);
             result.setMessage("密码信息不能为空");
             return result;
         }
-        
+
         Optional<AccountModel> requstResult = this.accountComponent.fetchAccount(email);
         if (requstResult.isPresent()) {
             result.setCode(4);
             result.setMessage("该邮箱已经注册，不能多次注册");
             return result;
         }
-        
+
         String registerIp = this.getLocalIp(request);
         this.accountComponent.saveAccount(email, password, registerIp);
         result.setCode(0);

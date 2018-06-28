@@ -15,15 +15,15 @@ import cn.yxsk.account.provider.vo.AccountResult;
 public class AccountController {
     @Autowired
     private AccountService accountService;
-    
+
     @GetMapping("getAccount")
     public AccountResult fetchAccount(String email) {
         AccountResult result = new AccountResult();
         result.setCode(0);
-        this.accountService.fetchAccountModelByEmail(email).ifPresent(account->result.setData(account));
+        this.accountService.fetchAccountModelByEmail(email).ifPresent(account -> result.setData(account));
         return result;
     }
-    
+
     @PostMapping("saveAccount")
     public AccountResult saveAccount(AccountModel model) {
         model.setRegisterTime(System.currentTimeMillis() / 1000);
