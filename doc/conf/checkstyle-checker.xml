@@ -94,7 +94,7 @@
       option: 右大括号是否单独一行显示  
       tokens: 定义检查的类型  -->  
     <module name="RightCurly">    
-        <property name="option" value="eol"/>     
+        <property name="option" value="same"/>     
     </module>
         
     <!-- 检查在重写了equals方法后是否重写了hashCode方法 --> 
